@@ -1,0 +1,537 @@
+
+
+/*-----------------默认style为1280及以上分辨率------------------*/
+/**
+说明：
+   响应式框架栅格为12格，所有布局都以12格为基本单位，间隔20px;
+
+   在所有四个分辨率下都是20px的间隔：1216，1000，720，720以下
+
+   响应区域样式：
+       .rsp_body
+       ----用于限定内容区，在.rsp_body下的区域为响应式区
+
+   功能样式：
+       .hide_dtHD/.hide_dt/.hide_pad/.hide_ph
+       ----将模块设置为仅在指定分辨率下隐藏
+       .show_dtHD/.show_dt/.show_pad/.show_ph
+       ----将模块设置为仅在指定分辨率下显示
+       .no-margin-right
+       ----消除右外补白，关键，由于IE不支持CSS3选择器，所以需要这个样式来消除最后一个子元素的外补白。
+       .no-margin-bottom
+       ----消除最后一个元素的底部外补白
+
+   布局样式
+       跨格定位：
+       .dtHD_offset_n / .dt_offset_n / .pad_offset_n / .ph_offset_n
+       ----n为数字，对应12格，最大值为11
+
+       容器宽度:
+       .col_dtHD_n :桌面1216以上
+       .col_dt_n:桌面1000-1216之间
+       .col_pad_n:平板721-999之间
+       .col_ph_n:手机720以下
+       ----n为数字，对应12格宽度，最大值为12，即100%
+
+       .row
+       ----用于分行并列模块
+
+**/
+
+/*---------------------LESS 变量文件-----------------------*/
+@import "rsp.reset.less";
+@import "rsp.variable.less";
+
+/*-----------------通用布局样式 1000---------------------*/
+
+.rsp_body{
+  width: @width_dt;
+  margin: 0 auto;
+  position: relative;
+  height: auto;
+  min-height: 0px;
+}
+.row{
+  width: 100%;
+  height: auto !important;
+  height: 0px;
+  min-height: 0px;
+}
+.row:after{
+  clear: both;
+}
+.row:before, .row:after {
+  display: table;
+  content: " ";
+}
+
+.hide_dtHD {
+  display: inherit !important;
+}
+.hide_dt {
+  display: none !important;
+}
+.show_dtHD {
+  display: none !important;
+}
+.show_dt {
+  display: inherit !important;
+}
+
+.dt_offset_1 {
+  margin-left: @offset_dt_val*1;
+}
+.dt_offset_2 {
+  margin-left: @offset_dt_val*2;
+}
+.dt_offset_3 {
+  margin-left: @offset_dt_val*3;
+}
+.dt_offset_4 {
+  margin-left: @offset_dt_val*4;
+}
+.dt_offset_5 {
+  margin-left: @offset_dt_val*5;
+}
+.dt_offset_6 {
+  margin-left: @offset_dt_val*6;
+}
+.dt_offset_7 {
+  margin-left: @offset_dt_val*7;
+}
+.dt_offset_8 {
+  margin-left: @offset_dt_val*8;
+}
+.dt_offset_9 {
+  margin-left: @offset_dt_val*9;
+}
+.dt_offset_10 {
+  margin-left: @offset_dt_val*10;
+}
+.dt_offset_11 {
+  margin-left: @offset_dt_val*11;
+}
+.dt_no_offset{
+  margin-left: 0;
+}
+
+
+.col_dt_1,
+.col_dt_2,
+.col_dt_3,
+.col_dt_4,
+.col_dt_5,
+.col_dt_6,
+.col_dt_7,
+.col_dt_8,
+.col_dt_9,
+.col_dt_10,
+.col_dt_11{
+  margin-right: @col_dt_margin;
+  .boxSizing;
+  _display:inline;
+  _float:left;//compatible IE6
+}
+
+.col_dt_1{
+  width:@col_dt_unit_width;
+}
+.col_dt_2{
+  width:@col_dt_unit_width*2+@col_dt_margin;
+}
+.col_dt_3{
+  width:@col_dt_unit_width*3+@col_dt_margin*2;
+}
+.col_dt_4{
+  width:@col_dt_unit_width*4+@col_dt_margin*3;
+}
+.col_dt_5{
+  width:@col_dt_unit_width*5+@col_dt_margin*4;
+}
+.col_dt_6{
+  width:@col_dt_unit_width*6+@col_dt_margin*5;
+}
+.col_dt_7{
+  width:@col_dt_unit_width*7+@col_dt_margin*6;
+}
+.col_dt_8{
+  width:@col_dt_unit_width*8+@col_dt_margin*7;
+}
+.col_dt_9{
+  width:@col_dt_unit_width*9+@col_dt_margin*8;
+}
+.col_dt_10{
+  width:@col_dt_unit_width*10+@col_dt_margin*9;
+}
+.col_dt_11{
+  width:@col_dt_unit_width*11+@col_dt_margin*10;
+}
+.col_dt_12{
+  width: 100%;
+  .float_none;
+}
+
+/*=================================//兼容高分屏PC 1216=======================================*/
+
+@media screen and (min-width:1216px){
+.rsp_body{
+  width:@width_dthd;
+}
+
+.hide_dtHD { //大屏幕下隐藏模块
+  display: none !important;
+}
+.show_dtHD { //大屏幕下显示模块
+  display: inherit !important;
+}
+
+
+.dtHD_offset_1 {
+  margin-left: @offset_dthd_val *1;
+}
+.dtHD_offset_2 {
+  margin-left: @offset_dthd_val *2;
+}
+.dtHD_offset_3 {
+  margin-left: @offset_dthd_val *3;
+}
+.dtHD_offset_4 {
+  margin-left: @offset_dthd_val *4;
+}
+.dtHD_offset_5 {
+  margin-left: @offset_dthd_val *5;
+}
+.dtHD_offset_6 {
+  margin-left: @offset_dthd_val *6;
+}
+.dtHD_offset_7 {
+  margin-left: @offset_dthd_val *7;
+}
+.dtHD_offset_8 {
+  margin-left: @offset_dthd_val *8;
+}
+.dtHD_offset_9 {
+  margin-left: @offset_dthd_val *9;
+}
+.dtHD_offset_10 {
+  margin-left: @offset_dthd_val *10;
+}
+.dtHD_offset_11 {
+  margin-left: @offset_dthd_val *11;
+}
+.dtHD_no_offset{
+  margin-left: 0;
+}
+
+.col_dtHD_1,
+.col_dtHD_2,
+.col_dtHD_3,
+.col_dtHD_4,
+.col_dtHD_5,
+.col_dtHD_6,
+.col_dtHD_7,
+.col_dtHD_8,
+.col_dtHD_9,
+.col_dtHD_10,
+.col_dtHD_11{
+  margin-right: @col_dthd_margin;
+  .boxSizing;
+}
+
+.col_dtHD_1{
+    width: @col_dthd_unit_width;
+}
+.col_dtHD_2{
+   width: @col_dthd_unit_width*2+@col_dthd_margin;
+}
+.col_dtHD_3{
+   width: @col_dthd_unit_width*3+@col_dthd_margin*2;
+}
+.col_dtHD_4{
+   width: @col_dthd_unit_width*4+@col_dthd_margin*3;
+}
+.col_dtHD_5{
+   width: @col_dthd_unit_width*5+@col_dthd_margin*4;
+}
+.col_dtHD_6{
+   width: @col_dthd_unit_width*6+@col_dthd_margin*5;
+}
+.col_dtHD_7{
+   width: @col_dthd_unit_width*7+@col_dthd_margin*6;
+}
+.col_dtHD_8{
+   width: @col_dthd_unit_width*8+@col_dthd_margin*7;
+}
+.col_dtHD_9{
+   width: @col_dthd_unit_width*9+@col_dthd_margin*8;
+}
+.col_dtHD_10{
+   width: @col_dthd_unit_width*10+@col_dthd_margin*9;
+}
+.col_dtHD_11{
+   width: @col_dthd_unit_width*11+@col_dthd_margin*10;
+}
+.col_dtHD_12{
+  width: 100%;
+  .float_none;
+}
+
+}
+
+/*=================================//兼容PAD=======================================*/
+@media screen and (max-width:999px){
+  .rsp_body{
+    width: @width_pad;
+  }
+
+  .hide_dtHD {
+    display: inherit !important;
+  }
+  .hide_dt {
+    display: inherit !important;
+  }
+  .hide_pad {
+    display: none !important;
+  }
+  .show_dtHD {
+    display: none !important;
+  }
+  .show_dt {
+    display: none !important;
+  }
+  .show_pad {
+    display: inherit !important;
+  }
+
+  .pad_offset_1 {
+    margin-left: @offset_pad_val *1;
+  }
+  .pad_offset_2 {
+    margin-left: @offset_pad_val *2;
+  }
+  .pad_offset_3 {
+    margin-left: @offset_pad_val *3;
+  }
+  .pad_offset_4 {
+    margin-left: @offset_pad_val *4;
+  }
+  .pad_offset_5 {
+    margin-left: @offset_pad_val *5;
+  }
+  .pad_offset_6 {
+    margin-left: @offset_pad_val *6;
+  }
+  .pad_offset_7 {
+    margin-left: @offset_pad_val *7;
+  }
+  .pad_offset_8 {
+    margin-left: @offset_pad_val *8;
+  }
+  .pad_offset_9 {
+    margin-left: @offset_pad_val *9;
+  }
+  .pad_offset_10 {
+    margin-left: @offset_pad_val *10;
+  }
+  .pad_offset_11 {
+    margin-left: @offset_pad_val *11;
+  }
+  .pad_no_offset{
+    margin-left: 0px;
+  }
+
+  .col_pad_1,
+  .col_pad_2,
+  .col_pad_3,
+  .col_pad_4,
+  .col_pad_5,
+  .col_pad_6,
+  .col_pad_7,
+  .col_pad_8,
+  .col_pad_9,
+  .col_pad_10,
+  .col_pad_11{
+    margin-right: @col_pad_margin;
+    .boxSizing;
+  }
+
+  .col_pad_1{
+    width:@col_pad_unit_width;
+  }
+  .col_pad_2{
+    width:@col_pad_unit_width*2 + @col_pad_margin*1;
+  }
+  .col_pad_3{
+    width:@col_pad_unit_width*3 + @col_pad_margin*2;
+  }
+  .col_pad_4{
+    width:@col_pad_unit_width*4 + @col_pad_margin*3;
+  }
+  .col_pad_5{
+    width:@col_pad_unit_width*5 + @col_pad_margin*4;
+  }
+  .col_pad_6{
+    width:@col_pad_unit_width*6 + @col_pad_margin*5;
+  }
+  .col_pad_7{
+    width:@col_pad_unit_width*7 + @col_pad_margin*6;
+  }
+  .col_pad_8{
+    width:@col_pad_unit_width*8 + @col_pad_margin*7;
+  }
+  .col_pad_9{
+    width:@col_pad_unit_width*9 + @col_pad_margin*8;
+  }
+  .col_pad_10{
+    width:@col_pad_unit_width*10 + @col_pad_margin*9;
+  }
+  .col_pad_11{
+    width:@col_pad_unit_width*11 + @col_pad_margin*10;
+  }
+  .col_pad_12{
+    width: 100%;
+    .float_none;
+  }
+
+}
+
+/*======================//兼容手机========================*/
+@media screen and (max-width:719px){
+  .rsp_body{
+    width: @width_ph;
+  }
+
+  .hide_dtHD {
+    display: inherit !important;
+  }
+  .hide_dt {
+    display: inherit !important;
+  }
+  .hide_pad {
+    display: inherit !important;
+  }
+  .hide_ph {
+    display: none !important;
+  }
+
+  .show_dtHD {
+    display: none !important;
+  }
+  .show_dt {
+    display: none !important;
+  }
+  .show_pad {
+    display: none !important;
+  }
+  .show_ph {
+    display: inherit !important;
+  }
+
+  .ph_offset_1{
+    margin-left:@offset_ph_val*1;
+  }
+  .ph_offset_2{
+    margin-left:@offset_ph_val*2;
+  }
+  .ph_offset_3{
+    margin-left:@offset_ph_val*3;
+  }
+  .ph_offset_4{
+    margin-left:@offset_ph_val*4;
+  }
+  .ph_offset_5{
+    margin-left:@offset_ph_val*5;
+  }
+  .ph_offset_6{
+    margin-left:@offset_ph_val*6;
+  }
+  .ph_offset_7{
+    margin-left:@offset_ph_val*7;
+  }
+  .ph_offset_8{
+    margin-left:@offset_ph_val*8;
+  }
+  .ph_offset_9{
+    margin-left:@offset_ph_val*9;
+  }
+  .ph_offset_10{
+    margin-left:@offset_ph_val*10;
+  }
+  .ph_offset_11{
+    margin-left:@offset_ph_val*11;
+  }
+  .ph_no_offset{
+    margin-left:0;
+  }
+
+  .col_ph_1,
+  .col_ph_2,
+  .col_ph_3,
+  .col_ph_4,
+  .col_ph_5,
+  .col_ph_6,
+  .col_ph_7,
+  .col_ph_8,
+  .col_ph_9,
+  .col_ph_10,
+  .col_ph_11{
+    margin-right: 0;
+    .boxSizing;
+  }
+
+  .col_ph_1{
+    width: @col_ph_unit_width*1;
+  }
+  .col_ph_2{
+    width: @col_ph_unit_width*2;
+  }
+  .col_ph_3{
+    width: @col_ph_unit_width*3;
+  }
+  .col_ph_4{
+    width: @col_ph_unit_width*4;
+  }
+  .col_ph_5{
+    width: @col_ph_unit_width*5;
+  }
+  .col_ph_6{
+    width: @col_ph_unit_width*6;
+  }
+  .col_ph_7{
+    width: @col_ph_unit_width*7;
+  }
+  .col_ph_8{
+    width: @col_ph_unit_width*8;
+  }
+  .col_ph_9{
+    width: @col_ph_unit_width*9;
+  }
+  .col_ph_10{
+    width: @col_ph_unit_width*10;
+  }
+  .col_ph_11{
+    width: @col_ph_unit_width*11;
+  }
+  .col_ph_12{
+    width: 100%;
+    .float_none;
+  }
+}
+
+
+/*====================定义一些修复样式=======================*/
+
+.no-margin-right{
+  margin-right: 0 !important;
+}
+.no-margin-bottom{
+  margin-bottom: 0 !important;
+}
+
+[class*="col_"] {
+  float: left;
+}
+
+.row div:last-child {
+  margin-right: 0 !important;
+}
