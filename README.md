@@ -14,3 +14,17 @@ TxtToHtml
 跑起node服务器，打开127.0.0.1:8081
 
 点击文件即可完成转换
+
+EN:
+
+Convert TXT text to HTML.
+
+Method of use：
+
+Base on nodejs & express.
+
+Put the TXT file in public/txt folder.
+
+run the nodejs server, open url '127.0.0.1:8081' in the browser.
+
+click the button to convert.
